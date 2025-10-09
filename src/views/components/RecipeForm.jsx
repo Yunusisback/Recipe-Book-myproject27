@@ -21,6 +21,56 @@ function useArrayField(initialValue = ['']) {
   return { items, update, add, remove, setItems };
 }
 
+function ArrayInputList({ label, items, onChange, onAdd, onRemove, placeholder, type = 'input' }) {
+  return (
+    <div className="mb-4">
+      <label className="block text-gray-700 font-medium mb-2">{label} *</label>
+      {items.map((item, index) => (
+        <div key={index} className="flex gap-2 mb-2">
+          {type === 'textarea' && (
+            <span className="flex-shrink-0 w-8 h-10 bg-orange-500 text-white rounded-lg flex items-center justify-center font-bold">
+              {index + 1}
+            </span>
+          )}
+          {type === 'textarea' ? (
+            <textarea
+              value={item}
+              onChange={(e) => onChange(index, e.target.value)}
+              className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
+              placeholder={`${placeholder} ${index + 1}`}
+              rows="2"
+              required
+            />
+          ) : (
+            <input
+              type="text"
+              value={item}
+              onChange={(e) => onChange(index, e.target.value)}
+              className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
+              placeholder={`${placeholder} ${index + 1}`}
+              required
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => onRemove(index)}
+            className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 h-10"
+          >
+            🗑️
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={onAdd}
+        className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+      >
+        + {placeholder} Ekle
+      </button>
+    </div>
+  );
+}
+
 function RecipeForm({ recipe, onSave, onCancel }) {
   const categories = categoryController.getAllCategories().filter(cat => cat.name !== 'Tümü');
 
