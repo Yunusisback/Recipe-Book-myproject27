@@ -2,7 +2,24 @@ import { useState, useEffect } from 'react';
 import { difficultyLevels } from '../../models/Recipe';
 import categoryController from '../../controllers/CategoryController';
 
+// Custom Hook - Array yönetimi için
+function useArrayField(initialValue = ['']) {
+  const [items, setItems] = useState(initialValue);
 
+  const update = (index, value) => {
+    setItems(prev => prev.map((item, i) => i === index ? value : item));
+  };
+
+  const add = () => setItems(prev => [...prev, '']);
+  
+  const remove = (index) => {
+    if (items.length > 1) {
+      setItems(prev => prev.filter((_, i) => i !== index));
+    }
+  };
+
+  return { items, update, add, remove, setItems };
+}
 
 function RecipeForm({ recipe, onSave, onCancel }) {
   const categories = categoryController.getAllCategories().filter(cat => cat.name !== 'Tümü');
