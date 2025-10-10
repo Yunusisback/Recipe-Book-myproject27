@@ -103,11 +103,9 @@ useEffect(() => {
     }
   }, [recipe]);
 
-  // Input değişikliği
-
+  // Tek bir handleChange fonksiyonu
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   // Malzeme değişikliği
