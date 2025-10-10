@@ -74,31 +74,32 @@ function ArrayInputList({ label, items, onChange, onAdd, onRemove, placeholder, 
 function RecipeForm({ recipe, onSave, onCancel }) {
   const categories = categoryController.getAllCategories().filter(cat => cat.name !== 'Tümü');
 
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: '',
     category: 'Ana Yemek',
-    ingredients: [''],
-    steps: [''],
     cookingTime: 30,
     servings: 4,
     difficulty: 'Orta',
     imageUrl: ''
   });
 
-  // Düzenleme modundaysa veriyi doldur
+  // Custom hooks for arrays
+  const ingredients = useArrayField(['']);
+  const steps = useArrayField(['']);
 
-  useEffect(() => {
+  // Düzenleme modunda veriyi doldur
+useEffect(() => {
     if (recipe) {
       setFormData({
         title: recipe.title,
         category: recipe.category,
-        ingredients: recipe.ingredients,
-        steps: recipe.steps,
         cookingTime: recipe.cookingTime,
         servings: recipe.servings,
         difficulty: recipe.difficulty,
         imageUrl: recipe.imageUrl || ''
       });
+         ingredients.setItems(recipe.ingredients);  
+      steps.setItems(recipe.steps);
     }
   }, [recipe]);
 
