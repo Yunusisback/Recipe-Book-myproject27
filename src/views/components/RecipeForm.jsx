@@ -226,40 +226,19 @@ useEffect(() => {
               className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
               placeholder="https://example.com/image.jpg"
             />
-          </div>
+         </div>
 
-          {/* Malzemeler */}
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Malzemeler *</label>
-            {formData.ingredients.map((ingredient, index) => (
-              <div key={index} className="flex gap-2 mb-2">
-                <input
-                  type="text"
-                  value={ingredient}
-                  onChange={(e) => handleIngredientChange(index, e.target.value)}
-                  className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
-                  placeholder={`Malzeme ${index + 1}`}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => removeIngredient(index)}
-                  className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                >
-                  🗑️
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addIngredient}
-              className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-            >
-              + Malzeme Ekle
-            </button>
-          </div>
+          {/* Malzemeler - Optimize edilmiş component */}
+          <ArrayInputList
+            label="Malzemeler"
+            items={ingredients.items}
+            onChange={ingredients.update}
+            onAdd={ingredients.add}
+            onRemove={ingredients.remove}
+            placeholder="Malzeme"
+          />
 
-          {/* Yapılış Adımları */}
+          {/* Yapılış Adımları - Optimize edilmiş component */}
           <div className="mb-6">
             <label className="block text-gray-700 font-medium mb-2">Yapılış Adımları *</label>
             {formData.steps.map((step, index) => (
