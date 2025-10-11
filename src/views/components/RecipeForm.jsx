@@ -101,77 +101,21 @@ useEffect(() => {
          ingredients.setItems(recipe.ingredients);  
       steps.setItems(recipe.steps);
     }
-  }, [recipe]);
+}, [recipe]);
 
   // Tek bir handleChange fonksiyonu
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Malzeme değişikliği
-
-  const handleIngredientChange = (index, value) => {
-    const newIngredients = [...formData.ingredients];
-    newIngredients[index] = value;
-    setFormData(prev => ({ ...prev, ingredients: newIngredients }));
-  };
-
-  // Malzeme ekle
-
-  const addIngredient = () => {
-    setFormData(prev => ({
-      ...prev,
-      ingredients: [...prev.ingredients, '']
-    }));
-  };
-
-  // Malzeme sil
-
-  const removeIngredient = (index) => {
-    if (formData.ingredients.length > 1) {
-      const newIngredients = formData.ingredients.filter((_, i) => i !== index);
-      setFormData(prev => ({ ...prev, ingredients: newIngredients }));
-    }
-  };
-
-  // Adım değişikliği
-
-  const handleStepChange = (index, value) => {
-    const newSteps = [...formData.steps];
-    newSteps[index] = value;
-    setFormData(prev => ({ ...prev, steps: newSteps }));
-  };
-
-
-  // Adım ekle
-
-  const addStep = () => {
-    setFormData(prev => ({
-      ...prev,
-      steps: [...prev.steps, '']
-    }));
-  };
-
-  // Adım sil
-
-  const removeStep = (index) => {
-    if (formData.steps.length > 1) {
-      const newSteps = formData.steps.filter((_, i) => i !== index);
-      setFormData(prev => ({ ...prev, steps: newSteps }));
-    }
-  };
-
   // Form gönder
-
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Boş malzeme ve adımları temizle
-
     const cleanedData = {
       ...formData,
-      ingredients: formData.ingredients.filter(ing => ing.trim() !== ''),
-      steps: formData.steps.filter(step => step.trim() !== '')
+      ingredients: ingredients.items.filter(ing => ing.trim() !== ''),
+      steps: steps.items.filter(step => step.trim() !== '')
     };
 
     onSave(cleanedData);
