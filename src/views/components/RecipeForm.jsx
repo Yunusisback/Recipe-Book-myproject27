@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { difficultyLevels } from '../../models/Recipe';
 import categoryController from '../../controllers/CategoryController';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeIcon import edildi
 
 // Custom Hook - Array yönetimi için
 function useArrayField(initialValue = ['']) {
@@ -74,7 +75,7 @@ function ArrayInputList({ label, items, onChange, onAdd, onRemove, placeholder, 
 function RecipeForm({ recipe, onSave, onCancel }) {
   const categories = categoryController.getAllCategories().filter(cat => cat.name !== 'Tümü');
 
-const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     title: '',
     category: 'Ana Yemek',
     cookingTime: 30,
@@ -88,7 +89,7 @@ const [formData, setFormData] = useState({
   const steps = useArrayField(['']);
 
   // Düzenleme modunda veriyi doldur
-useEffect(() => {
+  useEffect(() => {
     if (recipe) {
       setFormData({
         title: recipe.title,
@@ -98,10 +99,10 @@ useEffect(() => {
         difficulty: recipe.difficulty,
         imageUrl: recipe.imageUrl || ''
       });
-         ingredients.setItems(recipe.ingredients);  
+      ingredients.setItems(recipe.ingredients);  
       steps.setItems(recipe.steps);
     }
-}, [recipe]);
+  }, [recipe]);
 
   // Tek bir handleChange fonksiyonu
   const handleChange = (e) => {
@@ -159,6 +160,12 @@ useEffect(() => {
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-gray-700 font-medium mb-2">Kategori *</label>
+              <div className="flex items-center gap-2 mb-2">
+                {categories.find(cat => cat.name === formData.category) && (
+                  <FontAwesomeIcon icon={categories.find(cat => cat.name === formData.category).icon} className="text-orange-500" />
+                )}
+                <span className="text-gray-700 font-medium">{formData.category}</span>
+              </div>
               <select
                 name="category"
                 value={formData.category}
@@ -166,7 +173,7 @@ useEffect(() => {
                 className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
               >
                 {categories.map(cat => (
-                  <option key={cat.id} value={cat.name}>{cat.icon} {cat.name}</option>
+                  <option key={cat.id} value={cat.name}>{cat.name}</option>
                 ))}
               </select>
             </div>
@@ -226,7 +233,7 @@ useEffect(() => {
               className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
               placeholder="https://example.com/image.jpg"
             />
-         </div>
+          </div>
 
           {/* Malzemeler - Optimize edilmiş component */}
           <ArrayInputList
@@ -236,7 +243,7 @@ useEffect(() => {
             onAdd={ingredients.add}
             onRemove={ingredients.remove}
             placeholder="Malzeme"
-         />
+          />
 
           {/* Yapılış Adımları - Optimize edilmiş component */}
           <ArrayInputList
