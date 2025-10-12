@@ -236,41 +236,18 @@ useEffect(() => {
             onAdd={ingredients.add}
             onRemove={ingredients.remove}
             placeholder="Malzeme"
-          />
+         />
 
           {/* Yapılış Adımları - Optimize edilmiş component */}
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">Yapılış Adımları *</label>
-            {formData.steps.map((step, index) => (
-              <div key={index} className="flex gap-2 mb-2">
-                <span className="flex-shrink-0 w-8 h-10 bg-orange-500 text-white rounded-lg flex items-center justify-center font-bold">
-                  {index + 1}
-                </span>
-                <textarea
-                  value={step}
-                  onChange={(e) => handleStepChange(index, e.target.value)}
-                  className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
-                  placeholder={`Adım ${index + 1}`}
-                  rows="2"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => removeStep(index)}
-                  className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 h-10"
-                >
-                  🗑️
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addStep}
-              className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-            >
-              + Adım Ekle
-            </button>
-          </div>
+          <ArrayInputList
+            label="Yapılış Adımları"
+            items={steps.items}
+            onChange={steps.update}
+            onAdd={steps.add}
+            onRemove={steps.remove}
+            placeholder="Adım"
+            type="textarea"
+          />
 
           {/* Butonlar */}
           <div className="flex gap-3">
