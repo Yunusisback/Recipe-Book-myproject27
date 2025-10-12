@@ -1,6 +1,5 @@
 import categoryController from '../../controllers/CategoryController';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 
 function CategoryFilter({ selectedCategory, onCategoryChange }) {
   const categories = categoryController.getAllCategories();
@@ -11,13 +10,17 @@ function CategoryFilter({ selectedCategory, onCategoryChange }) {
         <button
           key={category.id}
           onClick={() => onCategoryChange(category.name)}
-          className={`px-4 py-2 rounded-full font-medium transition ${
-            selectedCategory === category.name
-              ? 'bg-orange-500 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-          }`}
+          className={`
+            px-4 py-2 rounded-full font-medium transition 
+            flex items-center justify-center 
+            ${
+              selectedCategory === category.name
+                ? 'bg-orange-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }
+          `}
         >
-          <span className="mr-1">{category.icon}</span>
+          <FontAwesomeIcon icon={category.icon} className="mr-2" />
           {category.name}
         </button>
       ))}
@@ -26,3 +29,4 @@ function CategoryFilter({ selectedCategory, onCategoryChange }) {
 }
 
 export default CategoryFilter;
+
