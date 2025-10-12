@@ -1,24 +1,38 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faClock, 
+  faCircleUser, 
+  faChartSimple, 
+  faBasketShopping, 
+  faUtensils, 
+  faPenToSquare, 
+  faXmark, 
+} from '@fortawesome/free-solid-svg-icons'; 
+
+
+
 function RecipeDetail({ recipe, onClose, onEdit }) {
   if (!recipe) return null;
-
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
 
         {/* Header */}
+
         <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-800">{recipe.title}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 text-2xl"
+            aria-label="Kapat"
           >
-            ✕
+            {/* Kapat ikonu */}
+            <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
 
-        {/* Content */}
+        {/* content */}
         <div className="p-6">
             
           {/* Görsel */}
@@ -30,18 +44,24 @@ function RecipeDetail({ recipe, onClose, onEdit }) {
             )}
           </div>
 
-          {/* Bilgiler */}
-          <div className="flex items-center gap-6 mb-6 text-gray-700">
+          {/* Bilgiler (Süre, Kişi Sayısı, Zorluk) */}
+          <div className="flex items-center gap-6 mb-6 text-gray-700 text-lg">
+
+            {/* Süre */}
             <div className="flex items-center gap-2">
-              <span className="text-xl">⏱️</span>
+              <FontAwesomeIcon icon={faClock} className="text-orange-500" />
               <span>{recipe.cookingTime} dakika</span>
             </div>
+
+            {/* Kişi Sayısı */}
             <div className="flex items-center gap-2">
-              <span className="text-xl">👥</span>
+              <FontAwesomeIcon icon={faCircleUser} className="text-orange-500" />
               <span>{recipe.servings} kişilik</span>
             </div>
+
+            {/* Zorluk */}
             <div className="flex items-center gap-2">
-              <span className="text-xl">📊</span>
+              <FontAwesomeIcon icon={faChartSimple} className="text-orange-500" />
               <span className={`font-medium ${
                 recipe.difficulty === 'Kolay' ? 'text-green-600' :
                 recipe.difficulty === 'Orta' ? 'text-yellow-600' :
@@ -52,13 +72,18 @@ function RecipeDetail({ recipe, onClose, onEdit }) {
             </div>
           </div>
 
-          <span className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full mb-6">
+          <span className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full mb-6 font-medium">
             {recipe.category}
           </span>
 
           {/* Malzemeler */}
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-gray-800 mb-3">🛒 Malzemeler</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+
+              {/* Malzemeler başlık ikonu */}
+              <FontAwesomeIcon icon={faBasketShopping} className="text-orange-500" /> 
+              Malzemeler
+            </h3>
             <ul className="space-y-2">
               {recipe.ingredients.map((ingredient, index) => (
                 <li key={index} className="flex items-start gap-2">
@@ -71,7 +96,12 @@ function RecipeDetail({ recipe, onClose, onEdit }) {
 
           {/* Yapılışı */}
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-gray-800 mb-3">👨‍🍳 Yapılışı</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+
+              {/* Yapılışı başlık ikonu */}
+              <FontAwesomeIcon icon={faUtensils} className="text-orange-500" /> 
+              Yapılışı
+            </h3>
             <ol className="space-y-3">
               {recipe.steps.map((step, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -84,13 +114,18 @@ function RecipeDetail({ recipe, onClose, onEdit }) {
             </ol>
           </div>
 
+
           {/* Butonlar */}
+          
           <div className="flex gap-3">
             <button
               onClick={() => onEdit(recipe)}
-              className="flex-1 bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition font-medium"
+              className="flex-1 bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition font-medium flex items-center justify-center gap-2"
             >
-              ✏️ Düzenle
+              {/* Düzenle ikonu */}
+
+              <FontAwesomeIcon icon={faPenToSquare} /> 
+              Düzenle
             </button>
             <button
               onClick={onClose}
