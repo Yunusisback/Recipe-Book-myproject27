@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { difficultyLevels } from '../../models/Recipe';
 import categoryController from '../../controllers/CategoryController';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesomeIcon import edildi
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 
-// Custom Hook - Array yönetimi için
+// Dizi yönetimi için hook
 function useArrayField(initialValue = ['']) {
   const [items, setItems] = useState(initialValue);
 
@@ -22,6 +22,7 @@ function useArrayField(initialValue = ['']) {
   return { items, update, add, remove, setItems };
 }
 
+// Dinamik liste bileşeni
 function ArrayInputList({ label, items, onChange, onAdd, onRemove, placeholder, type = 'input' }) {
   return (
     <div className="mb-4">
@@ -72,6 +73,7 @@ function ArrayInputList({ label, items, onChange, onAdd, onRemove, placeholder, 
   );
 }
 
+// ana form bileşeni
 function RecipeForm({ recipe, onSave, onCancel }) {
   const categories = categoryController.getAllCategories().filter(cat => cat.name !== 'Tümü');
 
@@ -84,11 +86,10 @@ function RecipeForm({ recipe, onSave, onCancel }) {
     imageUrl: ''
   });
 
-  // Custom hooks for arrays
   const ingredients = useArrayField(['']);
   const steps = useArrayField(['']);
 
-  // Düzenleme modunda veriyi doldur
+  // düzenleme modunda veri yükleme
   useEffect(() => {
     if (recipe) {
       setFormData({
@@ -104,12 +105,12 @@ function RecipeForm({ recipe, onSave, onCancel }) {
     }
   }, [recipe]);
 
-  // Tek bir handleChange fonksiyonu
+  // Form alanlarını güncelleme
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Form gönder
+  // form gönderimi
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -125,8 +126,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-
-        {/* Header */}
         <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-800">
             {recipe ? 'Tarifi Düzenle' : 'Yeni Tarif Ekle'}
@@ -138,11 +137,7 @@ function RecipeForm({ recipe, onSave, onCancel }) {
             ✕
           </button>
         </div>
-
-        {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
-            
-          {/* Başlık */}
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Tarif Adı *</label>
             <input
@@ -155,8 +150,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
               placeholder="Örn: Mercimek Çorbası"
             />
           </div>
-
-          {/* Kategori ve Zorluk */}
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-gray-700 font-medium mb-2">Kategori *</label>
@@ -177,7 +170,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
                 ))}
               </select>
             </div>
-
             <div>
               <label className="block text-gray-700 font-medium mb-2">Zorluk *</label>
               <select
@@ -192,8 +184,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
               </select>
             </div>
           </div>
-
-          {/* Süre ve Porsiyon */}
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-gray-700 font-medium mb-2">Pişirme Süresi (dk) *</label>
@@ -207,7 +197,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
                 className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"
               />
             </div>
-
             <div>
               <label className="block text-gray-700 font-medium mb-2">Porsiyon (kişi) *</label>
               <input
@@ -221,8 +210,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
               />
             </div>
           </div>
-
-          {/* Görsel URL */}
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Görsel URL (opsiyonel)</label>
             <input
@@ -234,8 +221,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
               placeholder="https://example.com/image.jpg"
             />
           </div>
-
-          {/* Malzemeler - Optimize edilmiş component */}
           <ArrayInputList
             label="Malzemeler"
             items={ingredients.items}
@@ -244,8 +229,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
             onRemove={ingredients.remove}
             placeholder="Malzeme"
           />
-
-          {/* Yapılış Adımları - Optimize edilmiş component */}
           <ArrayInputList
             label="Yapılış Adımları"
             items={steps.items}
@@ -255,8 +238,6 @@ function RecipeForm({ recipe, onSave, onCancel }) {
             placeholder="Adım"
             type="textarea"
           />
-
-          {/* Butonlar */}
           <div className="flex gap-3">
             <button
               type="submit"
