@@ -1,29 +1,20 @@
-// Zorluk seviyeleri
-
 export const difficultyLevels = ['Kolay', 'Orta', 'Zor'];
-
-
-
-// Yeni tarif oluştur
 
 export const createRecipe = (data) => {
   return {
     id: data.id || Date.now(),
     title: data.title,
     category: data.category,
-    ingredients: data.ingredients, // dizi: ['2 su bardağı un', '1 çay bardağı su']
-    steps: data.steps, // dizi: ['Hamuru yoğurun', 'Pişirin']
-    cookingTime: data.cookingTime, // dakika olarak
-    servings: data.servings, // kaç kişilik
-    difficulty: data.difficulty, // 'Kolay' 'Orta' 'Zor'
+    ingredients: data.ingredients,
+    steps: data.steps,
+    cookingTime: data.cookingTime,
+    servings: data.servings,
+    difficulty: data.difficulty,
     imageUrl: data.imageUrl || '',
     createdAt: new Date().toISOString(),
     isFavorite: false
   };
 };
-
-
-// Örnek tarifler
 
 export const sampleRecipes = [
   {
@@ -35,7 +26,7 @@ export const sampleRecipes = [
     cookingTime: 30,
     servings: 4,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500',
+    imageUrl: 'https://i.lezzet.com.tr/images-xxlarge-recipe/unsuz-mercimek-corbasi-4e0cfce9-1781-467c-90d8-58171f83530b.jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -48,7 +39,7 @@ export const sampleRecipes = [
     cookingTime: 45,
     servings: 4,
     difficulty: 'Orta',
-    imageUrl: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500',
+    imageUrl: 'https://imgrosetta.mynet.com.tr/file/9951142/9951142-900x900.jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -61,7 +52,7 @@ export const sampleRecipes = [
     cookingTime: 10,
     servings: 4,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500',
+    imageUrl: 'https://i.lezzet.com.tr/images-xxlarge/coban-salatasi-tarifi-cec37fc1-f5b6-4152-bc70-95f4eaa5ce2c?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -74,23 +65,23 @@ export const sampleRecipes = [
     cookingTime: 60,
     servings: 6,
     difficulty: 'Orta',
-    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTVqFeLxrbR3R4fI17D06wRS21On_UoB7xQ&s?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
-{
-  id: 5,
-  title: 'Limonata',
-  category: 'İçecek',
-  ingredients: ['4 adet limon', '1 litre su', '1 su bardağı şeker', 'Nane yaprakları', 'Buz'],
-  steps: ['Limonları sıkın', 'Şekeri suda eritin', 'Limon suyunu ekleyin', 'Nane ve buz ekleyip servis yapın'],
-  cookingTime: 5,
-  servings: 4,
-  difficulty: 'Kolay',
-  imageUrl: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500',
-  createdAt: new Date().toISOString(),
-  isFavorite: false
-},
+  {
+    id: 5,
+    title: 'Limonata',
+    category: 'İçecek',
+    ingredients: ['4 adet limon', '1 litre su', '1 su bardağı şeker', 'Nane yaprakları', 'Buz'],
+    steps: ['Limonları sıkın', 'Şekeri suda eritin', 'Limon suyunu ekleyin', 'Nane ve buz ekleyip servis yapın'],
+    cookingTime: 5,
+    servings: 4,
+    difficulty: 'Kolay',
+    imageUrl: 'https://i.lezzet.com.tr/images-xxlarge-recipe/ev-yapimi-konsantre-limonata-01e50b99-5890-411f-a4c2-997a71e8a5cc.jpg?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
   {
     id: 6,
     title: 'Sigara Böreği',
@@ -100,7 +91,7 @@ export const sampleRecipes = [
     cookingTime: 30,
     servings: 6,
     difficulty: 'Orta',
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500',
+    imageUrl: 'https://image.hurimg.com/i/hurriyet/90/0x0/5ab90197c9de3d234835ac0e.jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -113,7 +104,7 @@ export const sampleRecipes = [
     cookingTime: 90,
     servings: 4,
     difficulty: 'Zor',
-    imageUrl: 'https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=500',
+    imageUrl: 'https://cdn.ye-mek.net/App_UI/Img/out/650/2022/07/hazir-manti-resimli-yemek-tarifi(14).jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -126,7 +117,7 @@ export const sampleRecipes = [
     cookingTime: 35,
     servings: 4,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=500',
+    imageUrl: 'https://i.lezzet.com.tr/images-xxlarge/ezogelin-corbasi-f82a42cd-6a0c-47ac-8e5f-35e3da40df61?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -139,7 +130,7 @@ export const sampleRecipes = [
     cookingTime: 60,
     servings: 8,
     difficulty: 'Zor',
-    imageUrl: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Baklava%281%29.png?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -152,7 +143,7 @@ export const sampleRecipes = [
     cookingTime: 5,
     servings: 1,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500',
+    imageUrl: 'https://static.ticimax.cloud/cdn-cgi/image/width=540,quality=99/2571/uploads/blog/lezzetli-turk-kahvesinin-tarifi-452e.jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -165,7 +156,7 @@ export const sampleRecipes = [
     cookingTime: 25,
     servings: 4,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500',
+    imageUrl: 'https://i.ytimg.com/vi/pc53ZekOXZE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA0aw5WcmW3Es2LUXCU9nQqA2HN4w?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   },
@@ -178,7 +169,73 @@ export const sampleRecipes = [
     cookingTime: 15,
     servings: 2,
     difficulty: 'Kolay',
-    imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwnH__ahcV61-A4FvdyWdF_qPD5mgvmzpoQ&s?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
+  
+  {
+    id: 13,
+    title: 'Spaghetti Carbonara',
+    category: 'Ana Yemek',
+    ingredients: ['200gr spaghetti', '100gr pancetta', '2 yumurta sarısı', '50gr parmesan', 'Karabiber'],
+    steps: ['Spaghetti’yi haşlayın', 'Pancetta’yı kavurun', 'Yumurta sarısı ve parmesan karışımı hazırlayın', 'Makarnayı karıştırıp servis yapın'],
+    cookingTime: 20,
+    servings: 2,
+    difficulty: 'Orta',
+    imageUrl: 'https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/0346a29a89ef229b1a0ff9697184f944/Derivates/cb5051204f4a4525c8b013c16418ae2904e737b7.jpg?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
+  {
+    id: 14,
+    title: 'Sushi',
+    category: 'Ana Yemek',
+    ingredients: ['1 su bardağı sushi pirinci', 'Nori yaprakları', '100gr çiğ somon', 'Soya sosu', 'Wasabi'],
+    steps: ['Pirinci haşlayıp soğutun', 'Nori üzerine pirinç serin', 'Somonu ekleyip rulo yapın', 'Kesip soya sosu ile servis yapın'],
+    cookingTime: 40,
+    servings: 2,
+    difficulty: 'Zor',
+    imageUrl: 'https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/0749D9BC-260D-40F4-A07F-54814C4A82B4/Derivates/767f991e-a7c5-4c72-a88e-5023afa3ccc8.jpg?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
+  {
+    id: 15,
+    title: 'Caesar Salad',
+    category: 'Salata',
+    ingredients: ['1 baş romaine marul', '50gr crouton', '30gr parmesan', 'Caesar sosu', 'Tavuk göğsü'],
+    steps: ['Marulu doğrayın', 'Tavuğu ızgarada pişirin', 'Sos ve crouton ekleyin', 'Parmesan serpip karıştırın'],
+    cookingTime: 15,
+    servings: 2,
+    difficulty: 'Kolay',
+    imageUrl: 'https://cdn.loveandlemons.com/wp-content/uploads/2024/12/caesar-salad.jpg?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
+  {
+    id: 16,
+    title: 'Chicken Tikka Masala',
+    category: 'Ana Yemek',
+    ingredients: ['400gr tavuk göğsü', '200gr yoğurt', '2 yemek kaşığı tikka masala baharatı', '1 kutu domates sosu', 'Pirinç'],
+    steps: ['Tavuğu yoğurt ve baharatla marine edin', 'Fırında pişirin', 'Domates sosu ile karıştırın', 'Pirinçle servis yapın'],
+    cookingTime: 50,
+    servings: 4,
+    difficulty: 'Orta',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE_jxW7GIhqQ5V_bI-IGjkGeFhIBjHOsPuUg&s?w=500',
+    createdAt: new Date().toISOString(),
+    isFavorite: false
+  },
+  {
+    id: 17,
+    title: 'French Crepes',
+    category: 'Tatlı',
+    ingredients: ['1 su bardağı un', '2 yumurta', '1.5 su bardağı süt', 'Tereyağı', 'Meyve, şeker'],
+    steps: ['Un, yumurta ve sütü karıştırın', 'Tavada ince hamur pişirin', 'Tereyağı ve meyve ekleyip katlayın', 'Şeker serpip servis yapın'],
+    cookingTime: 20,
+    servings: 4,
+    difficulty: 'Kolay',
+    imageUrl: 'https://jackslobodian.com/wp-content/uploads/2020/01/French-Crepes-1-b.jpg?w=500',
     createdAt: new Date().toISOString(),
     isFavorite: false
   }
