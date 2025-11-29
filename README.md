@@ -24,6 +24,7 @@ This project is built with popular tools and libraries from the modern JavaScrip
 
 To run this project on your local machine, you will need the following tools installed:
 
+
 * Node.js (v16 or newer)
 * npm (v7 or newer)
 
